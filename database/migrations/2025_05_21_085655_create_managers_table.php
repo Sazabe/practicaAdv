@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('managers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('admin_user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('admin_user_id')->constrained('admin_users')->onDelete('cascade');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('name');
+            $table->string('public_name');
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();

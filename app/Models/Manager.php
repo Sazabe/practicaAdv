@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nnjeim\World\Models\Country;
 
 class Manager extends Authenticatable
 {
@@ -14,6 +16,7 @@ class Manager extends Authenticatable
     protected $fillable = [
         'email',
         'name',
+        'public_name',
         'password',
         'admin_user_id',
         'country_id',
@@ -27,4 +30,10 @@ class Manager extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function country(): BelongsTo{
+        return $this->belongsTo(related: Country::class);
+    }
+    public function admin_user(): BelongsTo{
+        return $this->belongsTo(related: AdminUser::class);
+    }
 }

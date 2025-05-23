@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('publicName');
+            $table->string('public_name');
             $table->foreignId('country_id')->constrained('countries')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();

@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('buildings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('publicName');
+            $table->string('public_name');
             $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('cascade');
             $table->foreignId('state_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('country_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('city_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('address');
             $table->string('postalcode');
             $table->timestamps();

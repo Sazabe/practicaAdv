@@ -14,6 +14,7 @@ class Manager extends Authenticatable
     protected $fillable = [
         'email',
         'name',
+        'public_name',
         'password',
         'admin_user_id',
         'country_id',

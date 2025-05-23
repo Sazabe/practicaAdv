@@ -15,6 +15,7 @@ class FrontUser extends Authenticatable
         'email',
         'password',
         'name',
+        'public_name',
         'country_id',
         'state_id',
         'city_id',

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 use Nnjeim\World\Models\City;
 use Nnjeim\World\Models\Country;
@@ -32,4 +33,8 @@ class Building extends Model
     public function city(): BelongsTo{
         return $this->belongsTo(related: City::class);
     }
+    public function companies(): BelongsToMany
+{
+    return $this->belongsToMany(Company::class, 'company_building', 'building_id', 'company_id');
+}
 }

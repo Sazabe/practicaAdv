@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('birthdate');
             $table->string('photo');
             $table->boolean('isActive');
-            //$table->date('created_at'); Me da error si las pongo en la migración, entiendo que son automaticas de laravel
+            //$table->date('created_at'); Me da error,son auto de laravel
             //$table->date('updated_at');
             $table->timestamps();
         });

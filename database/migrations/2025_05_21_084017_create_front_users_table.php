@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('public_name')->nullable();
             $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('cascade');
             $table->foreignId('state_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('country_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('city_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('address')->nullable();
             $table->string('postcode')->nullable();
             $table->rememberToken();

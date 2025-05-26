@@ -14,6 +14,7 @@ class room extends Model
     protected $fillable = [
         'name',
         'building_id',
+        'type',
     ];
     public function building(): BelongsTo{
         return $this->belongsTo(related: Building::class);

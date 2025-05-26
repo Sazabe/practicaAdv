@@ -23,8 +23,10 @@ class AdminUserPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('adminUser')
-            ->path('adminUser')
+            ->id('AdminUser')
+            ->path('AdminUser')
+            ->authGuard('AdminUser')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])

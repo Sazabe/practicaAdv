@@ -23,8 +23,10 @@ class FrontUserPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
-            ->id('frontUser')
-            ->path('frontUser')
+            ->id('FrontUser')
+            ->path('FrontUser')
+            ->authGuard('FrontUser')
+            ->login()
             ->colors([
                 'primary' => Color::Amber,
             ])

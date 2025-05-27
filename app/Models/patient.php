@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
-class patient extends Model
+class Patient extends Model
 {
     protected $table = 'patients';
     use HasFactory, Notifiable;
@@ -17,8 +17,6 @@ class patient extends Model
         'birthdate',
         'photo',
         'isActive',
-        'created_at',
-        'updated_at',
     ];
     public function front_user(): BelongsTo{
         return $this->belongsTo(related: FrontUser::class);

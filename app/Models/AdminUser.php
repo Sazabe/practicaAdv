@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 class AdminUser extends Authenticatable
@@ -27,4 +28,7 @@ class AdminUser extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function country(): BelongsTo{
+        return $this->belongsTo(related: Country::class);
+    }
 }

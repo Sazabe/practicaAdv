@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
-class Room extends Model
+class State extends Model
 {
-    protected $table = 'rooms';
     use HasFactory, Notifiable;
     protected $fillable = [
+        'country_id',
         'name',
-        'building_id',
-        'type',
+        'country_code',
     ];
-    public function building(): BelongsTo{
-        return $this->belongsTo(related: Building::class);
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(related: Country::class);
     }
 }

@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('public_name');
-            $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('cascade');
-            $table->foreignId('state_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('city_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('country_id')->nullable()->constrained();
+            $table->foreignId('state_id')->nullable()->constrained();
+            $table->foreignId('city_id')->nullable()->constrained();
             $table->string('address');
             $table->string('postalcode');
             $table->timestamps();

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\Manager\Resources;
+namespace App\Filament\Resources;
 
-use App\Filament\Manager\Resources\FrontUserResource\Pages;
-use App\Filament\Manager\Resources\FrontUserResource\RelationManagers;
+use App\Filament\Resources\FronUserResource\Pages;
+use App\Filament\Resources\FronUserResource\RelationManagers;
 use App\Models\City;
 use App\Models\FrontUser;
 use App\Models\State;
@@ -19,8 +19,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
 
-
-class FrontUserResource extends Resource
+class FronUserResource extends Resource
 {
     protected static ?string $model = FrontUser::class;
 
@@ -30,7 +29,6 @@ class FrontUserResource extends Resource
     {
         return $form
             ->schema([
-
                 Section::make('Personal Info')
                 ->columns(2)
                 ->schema([
@@ -66,20 +64,14 @@ class FrontUserResource extends Resource
                         })
                         ->required(),
                         Forms\Components\Select::make('state_id')
-                        ->options (fn (Get $get):Collection => State::query()
-                            ->where('country_id', $get('country_id'))
-                            ->pluck('name','id')
-                            )
+                        ->relationship(name:'state', titleAttribute:'name')
                         ->searchable()
                         ->preload()
                         ->live()
                         ->afterStateUpdated(fn (Set $set) => $set('city_id',null))
                         ->required(),
                         Forms\Components\Select::make('city_id')
-                        ->options (fn (Get $get):Collection => City::query()
-                            ->where('state_id', $get('state_id'))
-                            ->pluck('name','id')
-                            )
+                        ->relationship(name:'country', titleAttribute:'name')
                         ->searchable()
                         ->preload()
                         ->required(),
@@ -137,9 +129,9 @@ class FrontUserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFrontUsers::route('/'),
-            'create' => Pages\CreateFrontUser::route('/create'),
-            'edit' => Pages\EditFrontUser::route('/{record}/edit'),
+            'index' => Pages\ListFronUsers::route('/'),
+            'create' => Pages\CreateFronUser::route('/create'),
+            'edit' => Pages\EditFronUser::route('/{record}/edit'),
         ];
     }
 }

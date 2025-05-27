@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
-use Nnjeim\World\Models\City;
-use Nnjeim\World\Models\Country;
-use Nnjeim\World\Models\State;
+
 
 class Company extends Model
 {
@@ -27,13 +25,13 @@ class Company extends Model
         'city_id',
     ];
     public function country(): BelongsTo{
-        return $this->belongsTo(related: Country::class);
+        return $this->belongsTo(related: country::class);
     }
     public function state(): BelongsTo{
-        return $this->belongsTo(related: State::class);
+        return $this->belongsTo(related: state::class);
     }
     public function city(): BelongsTo{
-        return $this->belongsTo(related: City::class);
+        return $this->belongsTo(related: city::class);
     }
     public function buildings(): BelongsToMany
     {

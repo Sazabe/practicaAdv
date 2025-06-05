@@ -29,7 +29,14 @@ class RoomResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('type')
+                Forms\Components\Select::make('type')
+                    ->options([
+                        'empty' => 'Empty',
+                        'reserved' => 'Reserved',
+                        'occupied' => 'Occupied',
+                        'unavailable' => 'Unavailable',
+                    ])
+                    ->default('empty')
                     ->required(),
             ]);
     }

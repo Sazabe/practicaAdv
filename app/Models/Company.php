@@ -39,6 +39,6 @@ class Company extends Model
     }
     public function managers(): BelongsToMany
     {
-        return $this->belongsToMany(Manager::class, 'manager_company', 'manager_id', 'company_id');
+        return $this->belongsToMany(Manager::class, 'manager_company', 'company_id', 'manager_id');
     }
 }

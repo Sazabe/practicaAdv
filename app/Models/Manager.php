@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Manager extends Authenticatable
 {
     use HasFactory, Notifiable;
+    //protected $guard = 'manager'; Mirar si hace falta
 
     protected $fillable = [
         'email',

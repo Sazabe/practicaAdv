@@ -18,6 +18,7 @@ class FrontUser extends Authenticatable
         'password',
         'name',
         'public_name',
+        'company_id',
         'country_id',
         'state_id',
         'city_id',
@@ -34,6 +35,9 @@ class FrontUser extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function company(): BelongsTo{
+        return $this->belongsTo(related: Company::class);
+    }
     public function country(): BelongsTo{
         return $this->belongsTo(related: Country::class);
     }

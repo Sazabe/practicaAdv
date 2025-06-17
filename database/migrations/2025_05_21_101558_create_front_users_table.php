@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('name');
             $table->string('public_name')->nullable();
+            $table->foreignId('company_id');
             $table->foreignId('country_id')->nullable()->constrained();
             $table->foreignId('state_id')->nullable()->constrained();
             $table->foreignId('city_id')->nullable()->constrained();

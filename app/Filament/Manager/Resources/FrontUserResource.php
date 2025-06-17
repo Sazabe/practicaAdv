@@ -18,13 +18,21 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Collection;
-
+use Illuminate\Support\Facades\Auth;
 
 class FrontUserResource extends Resource
 {
     protected static ?string $model = FrontUser::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    
+    public static function getEloquentQuery(): Builder
+    {
+        $manager = Auth::guard('manager')->user();
+
+        return parent::getEloquentQuery()
+            ->whereIn('company_id', $manager->companies->pluck('id'));
+    }
 
     public static function form(Form $form): Form
     {

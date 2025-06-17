@@ -25,7 +25,14 @@ class BuildingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    
+    public static function getEloquentQuery(): Builder
+    {
+        $manager = Auth::guard('manager')->user();
+        return parent::getEloquentQuery()
+            ->whereHas('companies', function ($query) use ($manager) {
+                $query->whereIn('id', $manager->companies->pluck('id'));
+            });
+    }
 
     public static function form(Form $form): Form
     {
@@ -156,13 +163,5 @@ class BuildingResource extends Resource
             'edit' => Pages\EditBuilding::route('/{record}/edit'),
         ];
     }
-    public static function getEloquentQuery(): Builder
-    {
-        $manager = Auth::guard('manager')->user();
-
-        return parent::getEloquentQuery()
-            ->whereHas('companies', function ($query) use ($manager) {
-                $query->whereIn('id', $manager->companies->pluck('id'));
-            });
-    }
+    
 }

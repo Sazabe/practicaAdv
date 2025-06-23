@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 class AdminUser extends Authenticatable
@@ -15,7 +16,9 @@ class AdminUser extends Authenticatable
     protected $fillable = [
         'email',
         'password',
-        'publicname',
+        'public_name',
+        'name',
+        'surname',
         'country_id',
     ];
 
@@ -27,4 +30,24 @@ class AdminUser extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function country(): BelongsTo{
+        return $this->belongsTo(related: Country::class);
+    }
+    //Accesor clásico
+    public function getFullNameWithIdAttribute(): string
+    {
+        return "{$this->name} {$this->surname} - {$this->id}";
+    }
+    /*
+Alternativa moderna (comentada como referencia) para el accessor.
+Permite modificar el get y set, añadida en laravel 9
+use Illuminate\Database\Eloquent\Casts\Attribute;
+
+protected function displayName(): Attribute
+{
+    return Attribute::make(
+        get: fn () => "{$this->name} {$this->surname} - {$this->id}",
+    );
+}
+*/
 }

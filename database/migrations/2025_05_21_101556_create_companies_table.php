@@ -14,14 +14,14 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('CIF');
+            $table->string('cif');
             $table->string('email');
             $table->string('phone');
             $table->string('address');
             $table->string('postalcode');
-            $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('cascade');
-            $table->foreignId('state_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('country_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('country_id')->nullable()->constrained('countries');
+            $table->foreignId('state_id')->nullable()->constrained();
+            $table->foreignId('city_id')->nullable()->constrained();
 
 
             $table->timestamps();

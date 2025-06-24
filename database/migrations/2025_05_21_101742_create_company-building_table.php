@@ -11,7 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('company_building', function (Blueprint $table) {
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
+            $table->foreignId('building_id')->constrained('buildings')->onDelete('cascade');
+            $table->primary(['company_id', 'building_id']);
+        });
     }
 
     /**
@@ -19,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('company_building');
     }
 };
